@@ -31,6 +31,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+    // jakarta
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
@@ -39,6 +42,8 @@ dependencies {
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
