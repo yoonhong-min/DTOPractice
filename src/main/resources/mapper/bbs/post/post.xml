@@ -5,9 +5,42 @@
 
 <mapper namespace="com.study.dtopractice.bbs.post.mapper.PostMapper">
 
-  <insert id="createPost" parameterType="Post">
+  <insert id="createPost" parameterType="Post" useGeneratedKeys="true" keyProperty="postId">
     INSERT INTO BBS_POST (BOARD_ID, TITLE, CONTENT, WRITER_ID, WRITER_NAME)
     VALUES (#{boardId}, #{title}, #{content}, #{writerId}, #{writerName})
   </insert>
 
+  <select id="getAllPosts" parameterType="Long" resultType="Post">
+    SELECT
+        POST_ID,
+        BOARD_ID,
+        TITLE,
+        CONTENT,
+        WRITER_ID,
+        WRITER_NAME,
+        VIEW_CNT,
+        CREATED_AT
+    FROM BBS_POST
+    WHERE BOARD_ID = #{boardId}
+  </select>
+
+  <select id="getPost" parameterType="Long" resultType="Post">
+    SELECT
+        POST_ID,
+        BOARD_ID,
+        TITLE,
+        WRITER_ID,
+        WRITER_NAME,
+        VIEW_CNT,
+        CONTENT,
+        CREATED_AT
+    FROM BBS_POST
+    WHERE POST_ID = #{postId}
+  </select>
+
+  <update id="increaseViewCnt" parameterType="Long">
+    UPDATE BBS_POST
+    SET VIEW_CNT = VIEW_CNT + 1
+    WHERE POST_ID = #{postId}
+  </update>
 </mapper>
